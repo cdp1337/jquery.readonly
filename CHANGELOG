@@ -1,0 +1,125 @@
+Version 2.0.1
+Released - 2011.10.20
+Minor fix in the logic, setting elements as "disabled='disabled'" will cause 
+them to be ignored by forms.  This was NOT the intended behaviour.
+
+=============
+
+Version 2.0.0
+Released - 2011.09.27
+Completely rewritten for jQuery 1.6 +
+Should be much more efficient, (and closer matching to jQuery's plugin development standards).
+Now includes an auto z-index, where the div overlay will be 1-larger than the constrained element.
+Includes more accurate targetting for nested elements, (ie: readonly() on a div/form containing elements, every element is constrained now).
+
+Testing Report:
+   Well, it works in Firefox 6.0.2...
+
+=============
+
+Version 1.0-beta1
+Released - 2009.12.18
+
+Completely rewrote plugin again, (this seems to be a reoccuring pattern, eh?!)
+	Global object is still in place, but now contains any default settigns for the
+	plugin; as well as what it handled previously.
+In addition to the global object, a new object, (com_powelltechs_readonly), is 
+	attached directly to each element that is readonly'ified.  This object contains
+	a copy of the default settings, allowing each element to be customized.
+
+
+Testing Report:
+	Tests ran: Every example under the Examples link. 
+	(http://dev.powelltechs.com/jquery.readonly/examples)
+	
+	* Testing Overview:
+	** Browser w/v **  OS w/v    ** Status **
+	  Firefox 3.5.6    Ubuntu 9.04  Good
+	  Opera            ---          ---
+	  Chrome 2.0       WinXP        Bugs Detected
+	  IE 8.0           WinXP        Bugs Detected
+	  IE 7.0           WinXP        Good
+	  IE 6.0           Win2000      Good
+	  Konqueror        ---          ---
+	  Safari           ---          ---
+	
+	* Testing Details:
+	IE6 seems to have some strange items, (big surprise there...)
+	IE7 runs good.
+	IE8 - Bug with onKeyDown event, not being registered... hmm
+	Chrome - Bug with onKeyDown event, not being registered... at least it's not only IE...
+	
+
+Future Notes:
+	Get bugzilla to play nicely...
+	I still need to get an automated javascript testing interface put inplace for
+	 	automated tests of this plugin.
+
+Known Bugs:
+	IE6 and IE8 seem to have an extra onFocus/tab event that gets attached.  A suspicion 
+		of this is the "this.elementBound.attr('tabindex', '0');" line.  This will set
+		any element to have a specific tab order, enabling the onFocus event.  This 
+		should be reworked to remember the last tabIndex of the object, then set it 
+		to that upon unsetting the overlay.  This is affecting the tab and click behaviour.
+	IE6 selectbox hack can behave better.  The current hack is to hide the select
+		box completely, as IE6 renders that as a different above-page element.
+	When the text size is changed on any browser **EXCEPT** for Opera, the overlay loses sync
+		from the element it's covering.  This only seems to be an issue when the browser's Zoom
+		feature is used.
+
+=============
+
+Version 0.7
+Released - 2009.06.17
+
+Completely rewrote the plugin, utilizing a static global object to handle the overlays.
+  This provides an internal index of the currently readonly objects
+  and a central point of access for the various methods used.
+Should have fixed any bugs related to the window resizing, throwing off the positioning.
+  This is done by an interval timer that ticks every 1/2 second.  The ticking function
+  checks the last known positions of any 'bound' element and, if changed, updates the
+  overlay to stay overtop of the element.
+
+Testing Report:
+ ** Browser w/v **  OS w/v    ** Status **
+ * Firefox 3.0.8    Ubuntu 9.04  Good
+ * Firefox 3.x      Win2000      Good
+ * Opera 9.64       WinXP        OK - Bug where focus function is not attaching.
+ * Chrome 2.0       WinXP        Good
+ * IE 8.0           WinXP        Good
+ * IE 7.0           WinXP        Good
+ * IE 6.0           Win2000      Good (as good as ie6 on win2000 can be...)
+ * Konqueror 4.2.2  Ubuntu 9.04  Good (surprisingly...)
+ * Safari 4.30.17   WinXP        Good
+
+Future Notes:
+  None
+
+Known Bugs:
+  On Opera 9.x winXP, the focus event that is designed to automatically blur does not fire.
+   This allows the user to select the 'readonly' elements and chagne them via tabbing.
+   This only seems to affect Opera however.
+  When the text size is changed on any browser **EXCEPT** for Opera, the overlay loses sync
+   from the element it's covering.  This only seems to be an issue when the browser's Zoom
+   feature is used.
+
+=============
+
+Version 0.6.2
+Released - 2009.04.16
+Fixed compability with IE6.
+  Including an error where parseInt returns NaN, throwing off the width/height calculations.
+  Including the ever-annoying SELECT element issue of it remaining on top of any element.
+
+=============
+
+Version 0.6.1
+Released - 2009.04.09
+Addition to 0 padding and margin in CSS to overwrite any other styling set.  This resulted in the grey overlapping over the element.
+Changed all requests for '$' to jQuery, the proper method for plugins.
+
+=============
+
+Version 0.6
+Released 2009.04.03
+Initial release of this plugin

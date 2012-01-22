@@ -5,10 +5,12 @@
 * Author: Me :p
 * Compatibility: jQuery 1.6+ and most modern browsers
 * License: Dual MIT / GPL
-* [Bug Tracker](https://bugs.powelltechs.com/redmine/projects/jquery-readonly) (Registration is required)
+* [Bug Tracker][Bug Tracker] (Registration is required)
 * Demo (todo)
 
 This plugin simply makes virtually any element on a page "readonly".  This includes input boxes, select boxes, radio options, anchors, paragraphs, divs, iframes, even the entire page.  I originally developed it for a select box since some browsers _(IE)_, don't support readonly as a valid attribute on them.
+
+To report a bug or request a feature, [please use the bug tracker][Bug Tracker] to do so.
 
 ## Usage
 
@@ -95,3 +97,5 @@ Function that is called during the "tick" timer.
 Default: function(overlay){
 	return;
 }
+
+[Bug Tracker]: https://bugs.powelltechs.com/redmine/projects/jquery-readonly
